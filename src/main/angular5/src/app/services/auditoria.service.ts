@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { Auditoria ,EmbeddedAuditoria } from "../model/Auditoria";
+import { Auditoria ,EmbeddedAuditoria } from "../model/auditoria";
 import { Pagination } from '../model/pagination';
 import { LocationService } from './location.service';
  
