@@ -1,0 +1,51 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.login-form {
+  min-width: 150px;
+  width: 100%;
+  font-size: 20px;
+}
+
+.login-full-width {
+  width: 100%;
+}
+
+.wrapper {
+	padding: 15px 20px 40px 50px;
+	margin: 203px 54px 10px 10px;
+	font-size: 24px;
+	font-weight: bold;
+	opacity: 0.8;
+	color: #000;
+	width: 30%;
+    min-width: 254px;
+	float: right;
+}
+
+.login-buttons{
+	float: right;
+}
+
+.mat-checkbox-label, 
+.mat-checkbox-layout .mat-checkbox-label {
+	padding-right: 23px;
+}
+
+.error-message-div {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: red;
+    padding: 6px 6px 6px 11px;
+    border: 1px solid;
+    margin: -6px 10px 10px 10px;
+    font-size: 15px;
+}

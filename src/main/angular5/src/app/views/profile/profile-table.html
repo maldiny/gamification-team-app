@@ -1,0 +1,56 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input required matInput name="tipo" placeholder="Tipo" [(ngModel)]="tasksForm.tipo">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input required matInput type="number" name="puntos" placeholder="Puntos" [(ngModel)]="tasksForm.puntos">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input required matInput name="descripcion" placeholder="Descripcion" [(ngModel)]="tasksForm.descripcion">
+  </mat-form-field>
+  &nbsp;
+  <button mat-raised-button [disabled]="acceptButtonDisabled()" #acceptButton color="primary" (click)="enviar()">Enviar</button>
+  <button mat-raised-button (click)="reiniciar()">Reiniciar</button>
+</form>
+
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+  displayedColumns = ['id', 'tipo', 'descripcion', 'puntos', 'action'];
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell style="min-width: 50px; max-width: 4%;" *matHeaderCellDef style="max-width: 50px"> ID </mat-header-cell>
+      <mat-cell style="min-width: 50px; max-width: 4%;" *matCellDef="let element" style="max-width: 50px"> 1 </mat-cell>
+    </ng-container>
+
+    <!-- Tipo Column -->
+    <ng-container matColumnDef="tipo">
+      <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.tipo}} </mat-cell>
+    </ng-container>
+
+    <!-- Descripcion Column -->
+    <ng-container matColumnDef="descripcion">
+      <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.descripcion}} </mat-cell>
+    </ng-container>
+
+    <!-- Puntos Column -->
+    <ng-container matColumnDef="puntos">
+      <mat-header-cell *matHeaderCellDef class="center_row"> Puntos </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="center_row"> {{element.puntos}} </mat-cell>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef class="center_row"> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="center_row">
+        <button mat-raised-button color="primary" (click)="update(element)">Modificar</button>
+        <button mat-raised-button color="warn" (click)="remove(element)">Borrar</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

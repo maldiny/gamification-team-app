@@ -1,0 +1,40 @@
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell style="min-width: 50px; max-width: 4%;" *matHeaderCellDef style="max-width: 50px"> ID </mat-header-cell>
+      <mat-cell style="min-width: 50px; max-width: 4%;" *matCellDef="let element" style="max-width: 50px"> 1 </mat-cell>
+    </ng-container>
+
+    <!-- Usuario Column -->
+    <ng-container matColumnDef="usuario">
+      <mat-header-cell *matHeaderCellDef> Usuario </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.usuario}} </mat-cell>
+    </ng-container>
+
+    <!-- Mensaje Column -->
+    <ng-container matColumnDef="mensaje">
+      <mat-header-cell *matHeaderCellDef> Mensaje </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.mensaje}} </mat-cell>
+    </ng-container>
+
+    <!-- Fecha Column -->
+    <ng-container matColumnDef="fecha">
+      <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.fecha}} </mat-cell>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef class="center_row"> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="center_row">
+        <button mat-raised-button color="primary" (click)="update(element)">Modificar</button>
+        <button mat-raised-button color="warn" (click)="remove(element)">Borrar</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

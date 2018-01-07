@@ -1,0 +1,55 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input required matInput name="nombre" placeholder="Nombre del Rol" [(ngModel)]="rolesForm.nombre">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input required matInput name="descripcion" placeholder="Descripcion del Rol" [(ngModel)]="rolesForm.descripcion">
+  </mat-form-field>
+  <mat-form-field style="width: 450px;" class="example-full-width">
+    <input required matInput name="caracteristicas" placeholder="Caracteristicas" [(ngModel)]="rolesForm.caracteristicas">
+  </mat-form-field>
+  &nbsp;
+  <button mat-raised-button [disabled]="acceptButtonDisabled()" #acceptButton color="primary" (click)="enviarRol()">Enviar</button>
+  <button mat-raised-button (click)="reiniciarRol()">Reiniciar</button>
+</form>
+
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell style="min-width: 50px; max-width: 4%;" *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell style="min-width: 50px; max-width: 4%;" *matCellDef="let element"> 1 </mat-cell>
+    </ng-container>
+
+    <!-- Nombre Column -->
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell style="min-width: 200px; max-width: 15%;" *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="min-width: 200px; max-width: 15%;"> {{element.nombre}} </mat-cell>
+    </ng-container>
+
+    <!-- Descripcion Column -->
+    <ng-container matColumnDef="descripcion">
+      <mat-header-cell *matHeaderCellDef style="min-width: 250px; max-width: 27%;"> Descripcion </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="min-width: 250px; max-width: 27%;"> {{element.descripcion}} </mat-cell>
+    </ng-container>
+
+    <!-- Caracteristicas Column -->
+    <ng-container matColumnDef="caracteristicas">
+      <mat-header-cell *matHeaderCellDef style="min-width: 250px; max-width: 27%;"> Caracteristicas </mat-header-cell>
+      <mat-cell *matCellDef="let element" style="min-width: 250px; max-width: 27%;"> {{element.caracteristicas}} </mat-cell>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef class="center_row"> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="center_row">
+        <button mat-raised-button color="primary" (click)="updateRol(element)">Modificar</button>
+        <button mat-raised-button color="warn" (click)="removeRol(element)">Borrar</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

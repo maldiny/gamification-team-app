@@ -1,0 +1,69 @@
+<form class="ranking-form">
+  <mat-form-field class="ranking-full-width">
+    <input required matInput name="nombre" placeholder="Nombre" [(ngModel)]="usuariosForm.nombre">
+  </mat-form-field>
+  <mat-form-field class="ranking-full-width">
+    <input required matInput name="apellidos" placeholder="Apellidos" [(ngModel)]="usuariosForm.apellidos">
+  </mat-form-field>
+  <mat-form-field style="width: 300px;">
+    <mat-select required name="rol" placeholder="Rol" [(ngModel)]="usuariosForm.rol">
+      <mat-option *ngFor="let rol of roles; let i = index" value="{{ rol.nombre }}">{{ rol.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  &nbsp;
+  <button mat-raised-button [disabled]="acceptButtonDisabled()" #acceptButton color="primary" (click)="enviarUsuario()">Enviar</button>
+  <button mat-raised-button (click)="reiniciarUsuario()">Reiniciar</button>
+</form>
+
+<div class="ranking-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell style="min-width: 50px; max-width: 4%;" *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell  style="min-width: 50px; max-width: 4%;" *matCellDef="let element"> 1 </mat-cell>
+    </ng-container>
+
+    <!-- Nombre Column -->
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+    </ng-container>
+
+    <!-- Apellidos Column -->
+    <ng-container matColumnDef="apellidos">
+      <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.apellidos}} </mat-cell>
+    </ng-container>
+
+    <!-- Rol Column -->
+    <ng-container matColumnDef="rol">
+      <mat-header-cell *matHeaderCellDef> Rol </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.rol}} </mat-cell>
+    </ng-container>
+
+    <!-- puntos_actuales Column -->
+    <ng-container matColumnDef="puntos_actuales">
+      <mat-header-cell *matHeaderCellDef class="center_row"> Puntos Actuales </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="center_row"> 0 </mat-cell>
+    </ng-container>
+
+    <!-- puntos_acumulados Column -->
+    <ng-container matColumnDef="puntos_acumulados">
+      <mat-header-cell *matHeaderCellDef class="center_row"> Puntos Acumulados </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="center_row"> 0 </mat-cell>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef class="center_row"> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="center_row">
+        <button mat-raised-button color="primary" (click)="updateUsuario(element)">Modificar</button>
+        <button mat-raised-button color="warn" (click)="removeUsuario(element)">Borrar</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">{{row| json}}</mat-row>
+  </mat-table>
+</div>

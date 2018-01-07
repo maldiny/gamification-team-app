@@ -1,0 +1,9 @@
+.timeleft{
+	text-align: right;
+    padding-right: 2%;
+    font-size: 30px;
+    color: white;
+    position: absolute;
+    right: 0px;
+    top: 10px;
+}

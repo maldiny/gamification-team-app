@@ -1,0 +1,25 @@
+<div class="wrapper">
+	<form class="login-form">
+		<div>
+		  <mat-form-field class="login-full-width">
+		    <input required matInput name="nombre" placeholder="Nombre" [(ngModel)]="usuariosForm.nombre">
+		  </mat-form-field>
+		</div>
+		<div>
+		  <mat-form-field *ngIf="newUserForm == true" class="login-full-width">
+		    <input required matInput name="apellidos" placeholder="Apellidos" [(ngModel)]="usuariosForm.apellidos">
+		  </mat-form-field>
+		</div>
+		<div>
+		  <mat-form-field class="login-full-width">
+		    <input required matInput type="password" name="password" placeholder="Password" [(ngModel)]="usuariosForm.password">
+		  </mat-form-field>
+		</div>
+		<div class="error-message-div" *ngIf="this.errorMessage.length > 0"> {{ errorMessage }} </div>
+		<div class="login-buttons">
+		  <mat-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="newUserForm" [checked]="newUserForm" (change)="registerForm($event)">Crear usuario</mat-checkbox>
+		  <button mat-raised-button [disabled]="loginButtonDisabled()" *ngIf="newUserForm == false" #acceptButton color="primary" (click)="login()">Login</button>
+		  <button style="background-color: #54ff00de" mat-raised-button [disabled]="registroButtonDisabled()" *ngIf="newUserForm == true" #acceptButton color="primary" (click)="registro()">Registro</button>
+		</div>
+	</form>
+</div>
